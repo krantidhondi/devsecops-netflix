@@ -31,10 +31,9 @@ data "aws_subnets" "public" {
     name   = "vpc-id"
     values = [data.aws_vpc.default.id]
   }
-# Only private subnets: map-public-ip-on-launch = false
-  filter {
-    name   = "map-public-ip-on-launch"
-    values = ["true"]
+filter {
+    name   = "availability-zone"
+    values = ["us-east-1a", "us-east-1b"]  # avoid 1e
   }
 }
 #cluster provision
