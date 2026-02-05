@@ -29,7 +29,7 @@ data "aws_vpc" "default" {
 data "aws_subnets" "public" {
   filter {
     name   = "vpc-id"
-    values = [data.aws_vpc.default.id]
+    values = data.aws_vpc.default.id
   }
 # Only private subnets: map-public-ip-on-launch = false
   filter {
@@ -43,7 +43,7 @@ resource "aws_eks_cluster" "example" {
   role_arn = aws_iam_role.example.arn
 
   vpc_config {
-    subnet_ids = [data.aws_subnets.public.ids]
+    subnet_ids = data.aws_subnets.public.ids
   }
 
   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
