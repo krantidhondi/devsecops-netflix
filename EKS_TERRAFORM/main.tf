@@ -34,7 +34,7 @@ data "aws_subnets" "public" {
 # Only private subnets: map-public-ip-on-launch = false
   filter {
     name   = "map-public-ip-on-launch"
-    values = ["false"]
+    values = ["true"]
   }
 }
 #cluster provision
